@@ -1,15 +1,16 @@
-// Exercise 8.1: Write a function that takes and returns an istream&. The function
-// should read the stream until it hits end-of-file. The function should print what it reads
-// to the standard output. Reset the stream so that it is valid before returning the stream.
+// Exercise 8.9: Use the function you wrote for the first exercise in § 8.1.2 (p. 314) to print
+// the contents of an istringstream object.
 
 #include <iostream>
+#include <sstream>
 #include <stdexcept>
+#include <string>
 
 using namespace std;
 
 istream &f(istream &in)
 {
-    int v;
+    string v;
     while (in >> v, !in.eof()) // 直到遇到文件结尾停止读取
     {
         if (in.bad())
@@ -30,7 +31,9 @@ istream &f(istream &in)
 
 int main()
 {
-    cout << "input some int,and press ctrl+z" << endl;
-    f(cin);
+    ostringstream msg;
+    msg << "C++ primer !" << endl;
+    istringstream in(msg.str());
+    f(in);
     return 0;
 }
